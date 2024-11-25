@@ -122,14 +122,14 @@ public class Main {
 
         ArrayList<String> solubleOutputs = new ArrayList<String>(solubles);
         java.util.Collections.sort(solubleOutputs, (String lineA, String lineB) -> {
-            String wordA2 = lineA.split(" ")[1];
-            String wordB2 = lineB.split(" ")[1];
+            String wordA2 = lineA.split(" ")[1]+lineA.split(" ")[0];
+            String wordB2 = lineB.split(" ")[1]+lineB.split(" ")[0];
             return wordA2.compareTo(wordB2);
         });
         ArrayList<String> insolubleOutputs = new ArrayList<String>(insolubles);
         java.util.Collections.sort(insolubleOutputs, (String lineA, String lineB) -> {
-            String wordA2 = lineA.split(" ")[1];
-            String wordB2 = lineB.split(" ")[1];
+            String wordA2 = lineA.split(" ")[1]+lineA.split(" ")[0];
+            String wordB2 = lineB.split(" ")[1]+lineB.split(" ")[0];
             return wordA2.compareTo(wordB2);
         });
         System.out.println("Solubles");
