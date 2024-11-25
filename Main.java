@@ -1,4 +1,7 @@
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 
@@ -42,8 +45,8 @@ public class Main {
                     if(!t1[i][j][1]){
                         String combRow=eList1[i+1];
                         String combCol=eList1[j];
-                        String e1=combRow.substring(0, combRow.indexOf(' '))+" "+combCol.substring(combCol.indexOf(' ')+1);
-                        String e2=combCol.substring(0, combCol.indexOf(' '))+" "+combRow.substring(combRow.indexOf(' ')+1);
+                        String e1=combRow.substring(0, combRow.indexOf(' '))+combCol.substring(combCol.indexOf(' '));
+                        String e2=combCol.substring(0, combCol.indexOf(' '))+combRow.substring(combRow.indexOf(' '));
                         //If element dissolved
                         if(!t1[i][j][0]){
                             changed=true;
@@ -79,8 +82,8 @@ public class Main {
                     if(!t2[i][j][1]){
                         String combRow=eList2[i+1];
                         String combCol=eList2[j];
-                        String e1=combRow.substring(0, combRow.indexOf(' '))+" "+combCol.substring(combCol.indexOf(' ')+1);
-                        String e2=combCol.substring(0, combCol.indexOf(' '))+" "+combRow.substring(combRow.indexOf(' ')+1);
+                        String e1=combRow.substring(0, combRow.indexOf(' '))+combCol.substring(combCol.indexOf(' '));
+                        String e2=combCol.substring(0, combCol.indexOf(' '))+combRow.substring(combRow.indexOf(' '));
                         //If element dissolved
                         if(!t2[i][j][0]){
                             changed=true;
@@ -117,22 +120,23 @@ public class Main {
             }
         }
 
-        // java.util.Collections.sort(solubles, (String lineA, String lineB) -> {
-        //     String wordA2 = lineA.split(" ")[1];
-        //     String wordB2 = lineB.split(" ")[1];
-        //     return wordA2.compareTo(wordB2);
-        // });
-        // java.util.Collections.sort(insolubles, (String lineA, String lineB) -> {
-        //     String wordA2 = lineA.split(" ")[1];
-        //     String wordB2 = lineB.split(" ")[1];
-        //     return wordA2.compareTo(wordB2);
-        // });
-
+        ArrayList<String> solubleOutputs = new ArrayList<String>(solubles);
+        java.util.Collections.sort(solubleOutputs, (String lineA, String lineB) -> {
+            String wordA2 = lineA.split(" ")[1];
+            String wordB2 = lineB.split(" ")[1];
+            return wordA2.compareTo(wordB2);
+        });
+        ArrayList<String> insolubleOutputs = new ArrayList<String>(insolubles);
+        java.util.Collections.sort(insolubleOutputs, (String lineA, String lineB) -> {
+            String wordA2 = lineA.split(" ")[1];
+            String wordB2 = lineB.split(" ")[1];
+            return wordA2.compareTo(wordB2);
+        });
         System.out.println("Solubles");
-        System.out.println(solubles);
+        System.out.println(solubleOutputs);
 
         System.out.println("Insolubles");
-        System.out.println(insolubles);
+        System.out.println(insolubleOutputs);
 
         System.out.println("Unknown Pairs:");
         for(int i=0; i<6; i++){
